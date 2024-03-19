@@ -1,0 +1,4 @@
+[default]
+SQLALCHEMY_DATABASE_URI = "sqlite:///profetrack.db"
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+SECRET_KEY = "secret_key"
