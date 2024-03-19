@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ProfeTrack - Login</title>
+        <!-- Adiciona DaisyUI e Tailwind CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+            body {
+                font-family: "Roboto", sans-serif;
+            }
+        </style>
+    </head>
+    <body class="flex flex-col items-center justify-center h-screen bg-gray-800">
+        <header class="self-start absolute top-0 left-0 pl-10 pt-5">
+            <h1 class="text-3xl text-purple-500 font-semibold">ProfeTrack</h1>
+        </header>
+        <div class="w-full max-w-md">
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if
+            messages %} {% for category, message in messages %}
+            <div role="alert" class="alert alert-error" id="loginError">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stroke-current shrink-0 h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                </svg>
+                <span>{{ message }}</span>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+
+            <form
+                method="POST"
+                action="/login"
+                class="bg-gray-900 opacity-95 shadow-xl rounded-lg px-10 pt-8 pb-10 mb-4"
+            >
+                <h2 class="text-xl text-purple-500 font-semibold mb-6">Login</h2>
+                <div class="mb-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-300"
+                        >Email</label
+                    >
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="Digite seu email"
+                        class="input input-bordered w-full max-w-xs"
+                    />
+                </div>
+                <div class="mb-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-300"
+                        >Senha</label
+                    >
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Digite sua senha"
+                        class="input input-bordered w-full max-w-xs"
+                    />
+                </div>
+                <div class="flex items-center justify-between">
+                    <button class="btn btn-primary">Entrar</button>
+                </div>
+            </form>
+            <p class="text-center text-gray-400 text-xs">
+                &copy;2023 ProfeTrack. Todos os direitos reservados.
+            </p>
+        </div>
+        <script>
+            window.onload = function () {
+                setTimeout(function () {
+                    var element = document.getElementById("loginError")
+                    if (element) {
+                        element.style.display = "none"
+                    }
+                }, 3000) // 3000 ms = 3 segundos
+            }
+        </script>
+    </body>
+</html>
